@@ -1,0 +1,20 @@
+{
+  "name": "hcert-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest __tests__",
+    "dev": "npx jest __tests__ --watch"
+  },
+  "author": "Christian Landgren",
+  "license": "ISC",
+  "dependencies": {
+    "base45": "1.1",
+    "base45-js": "^1.0.1",
+    "cbor": "^5.2.0",
+    "cose-js": "^0.4.2",
+    "pako": "^2.0.3"
+  },
+  "devDependencies": {},
+  "description": ""
+}
