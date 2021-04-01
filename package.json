@@ -7,7 +7,7 @@
     "dev": "npx jest __tests__ --watch"
   },
   "author": "Christian Landgren",
-  "license": "ISC",
+  "license": "Apache2.0",
   "dependencies": {
     "base45": "1.1",
     "base45-js": "^1.0.1",
