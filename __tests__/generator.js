@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-const { generate, decode } = require('..')
+const { generate, verify } = require('..')
 const cbor = require('cbor')
 const cose = require('cose-js')
 const pako = require('pako') // zlib
-const base45 = require('base45-js')
+const base45 = require('base45')
 
 describe('generate', () => {
   const secret = 'very-very-secret-key'
@@ -72,14 +72,14 @@ describe('generate', () => {
     const encoded = base45.encode(zip)
     // 
     const decoded = base45.decode(encoded)
-    const unzip = pako.inflate(decoded, { to: 'string' })
+    const unzip = pako.inflate(decoded)
     const verified = await cose.sign.verify(unzip, verifier)
     expect(verified).toEqual(payload)
   })
 
   test('encode -> qr -> decode', async () => {
-    const qr = await generate(payload, secret)
-    const decoded = await decode(qr, secret)
+    const qr = await generate(payload, signer)
+    const decoded = await verify(qr, verifier)
     expect(decoded).toEqual(payload)
     console.log('result', decoded)
   })

@@ -6,28 +6,22 @@ const payload = require('./example.json')
 const { encode } = require('base45')
 
 const generate = async (payload, secret) => {
-  const mappedPayload = cbor.encode(payload)
-  // const mac = await cose.mac.create({ p: { alg: 'SHA-256_64' } }, mappedPayload, { key: secret })
-  const zipped = pako.deflateRaw(mappedPayload)
-  const encoded = base45.encode(zipped)
-  return zipped.toString('base64')
+
+  const signed = await cose.sign.create(headers, payload, signer)
+  const zip = pako.deflate(signed)
+  const encoded = base45.encode(zip)
+  return encoded
 }
 
-const decode = async (payload, secret) => {
-  const decoded = Buffer.from(payload, 'base64')
-  try {
-    const unzipped = pako.inflateRaw(decoded)
-    console.log('unzipped', unzipped)
-    const unmapped = cbor.decode(unzipped)
-    console.log('unmapped', unmapped)
-    return unmapped
-  } catch (err) {
-    console.error('err unzipping', err)
-  }
+const verify = async (payload, verifier) => {
+  const decoded = base45.decode(payload)
+  const unzip = pako.inflate(decoded)
+  const verified = await cose.sign.verify(unzip, verifier)
+  return verified
 }
 
 module.exports = {
   generate,
-  decode
+  verify
 }
 
