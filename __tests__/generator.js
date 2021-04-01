@@ -78,7 +78,7 @@ describe('generate', () => {
   })
 
   test('encode -> qr -> decode', async () => {
-    const qr = await generate(payload, signer)
+    const qr = await generate(payload, headers, signer)
     const decoded = await verify(qr, verifier)
     expect(decoded).toEqual(payload)
     console.log('result', decoded)

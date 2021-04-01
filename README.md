@@ -6,7 +6,7 @@ This lib is a helper to be able to work with green health cert easily from Javas
 
 ## Status
 
-Not working yet. See failing tests
+Tests working. Now we need to use correct certificates etc.
 
     ✓ base45 (1 ms)
     ✓ zip (5 ms)
@@ -14,7 +14,7 @@ Not working yet. See failing tests
     ✓ cose sign + verify (844 ms)
     ✓ cose sign + zip + unzip + verify (361 ms)
     ✓ cose sign + zip + base45.encode + base45.decode + unzip + verify (65 ms)
-    ✕ encode -> qr -> decode (13 ms)
+    ✓ encode -> qr -> decode (13 ms)
 
 
 ## Get Started

@@ -2,10 +2,8 @@ const cbor = require('cbor')
 const cose = require('cose-js')
 const pako = require('pako') // zlib
 const base45 = require('base45')
-const payload = require('./example.json')
-const { encode } = require('base45')
 
-const generate = async (payload, secret) => {
+const generate = async (payload, headers, signer) => {
 
   const signed = await cose.sign.create(headers, payload, signer)
   const zip = pako.deflate(signed)
