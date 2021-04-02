@@ -1,5 +1,5 @@
 {
-  "name": "hcert",
+  "name": "hcert-generate-verify",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,5 @@
     "cose-js": "^0.4.2",
     "pako": "^2.0.3"
   },
-  "description": ""
+  "description": "Generate and verify EU hcert encoded strings"
 }
