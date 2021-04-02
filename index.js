@@ -3,6 +3,12 @@ const cose = require('cose-js')
 const pako = require('pako') // zlib
 const base45 = require('base45')
 
+const defaultHeaders = {
+  p: { alg: 'ES256' },
+  u: { kid: '11' }
+}
+
+
 /*
   Generate a base45 encoded string containing the payload and signed by the by the signer.
 
@@ -11,7 +17,7 @@ const base45 = require('base45')
       generate({name: 'tolvan'}, { p: { alg: 'ES256' }, u: { kid: '11' }}), signerKey)
 
 */
-const generate = async (payload, headers, signer) => {
+const generate = async (payload, headers = defaultHeaders, signer) => {
 
   const signed = await cose.sign.create(headers, payload, signer)
   const zip = pako.deflate(signed)
@@ -21,9 +27,7 @@ const generate = async (payload, headers, signer) => {
 
 /*
   Verifies a base45 encoded signed and zipped string
-
 */
-
 const verify = async (payload, verifier) => {
   const decoded = base45.decode(payload)
   const unzip = pako.inflate(decoded)

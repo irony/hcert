@@ -1,6 +1,6 @@
 {
-  "name": "hcert-generator",
-  "version": "1.0.0",
+  "name": "hcert",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "npx jest __tests__",

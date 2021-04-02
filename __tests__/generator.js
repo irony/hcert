@@ -6,7 +6,6 @@ const pako = require('pako') // zlib
 const base45 = require('base45')
 
 describe('generate', () => {
-  const secret = 'very-very-secret-key'
   const payload = {
     user: { name: 'Tolvan Tolvansson' }
   }
